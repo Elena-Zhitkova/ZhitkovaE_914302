@@ -1,0 +1,60 @@
+﻿@using ScientificMagazine.Controllers;
+@model Upload
+@{
+    ViewData["Title"] = "Архив";
+}
+@if (LoginController.usersa == "Redactor")
+{
+    
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="formFile" class="form-label mt-4"></label>
+        <input class="form-control" asp-for="file" type="file" id="formFile">
+    </div>
+    <h2> </h2>
+    <button type="submit" class="btn btn-primary">Опубликовать выпуск журнала</button>
+</form>
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Список прошлых выпусков</h2>
+        </div>
+    </div>
+    <br /><br />
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Номер журнала
+                </th>
+                <th>
+                    Год выпуска
+                </th>
+                <th>
+                    PDF документ
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.arch)
+            {
+                <tr>
+                    <td width="20%">
+                        <a class="nav-link active" asp-controller="Archive" asp-action="Index">
+                            @obj.Number
+                        </a>
+                    </td>
+                    <td width="20%">
+                        @obj.Year
+                    </td>
+                    <td width="20%">
+                        @Html.ActionLink("Скачать", "DownloadFile", new { fileName = obj.Magazine })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

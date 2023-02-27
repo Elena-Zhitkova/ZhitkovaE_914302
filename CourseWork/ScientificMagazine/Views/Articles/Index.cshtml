@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ScientificMagazine.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MagazineId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleAuthor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticlePDF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Keywords)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Annotation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeQuoting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeDowload)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeViews)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MagazineId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArticleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArticleAuthor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArticlePDF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Keywords)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Annotation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeQuoting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeDowload)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeViews)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

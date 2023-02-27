@@ -1,0 +1,24 @@
+﻿@model Application
+<form method="post">
+        <legend>Заполните форму</legend>
+        <div class="form-group">
+            <label  class="form-label mt-4">Автор:</label>
+            <input asp-for="Author" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name" class="form-label mt-4">Название научной работы:</label>
+            <input asp-for="Name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="KeyWords" class="form-label mt-4">Ключевые слова:</label>
+            <input asp-for="KeyWords" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="ArticleFile" class="form-label mt-4">PDF файл со статьей</label>
+            <input asp-for="ArticleFile" class="form-control" type="file" id="formFile" name="articleLink">
+        </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

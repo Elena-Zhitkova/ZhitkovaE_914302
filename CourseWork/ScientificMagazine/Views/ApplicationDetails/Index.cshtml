@@ -1,0 +1,80 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using ScientificMagazine.Controllers;
+@model Upload;
+@{
+    ViewData["Title"] = "Детали заявки";
+    
+}
+
+<h2>Заявка @Model.app.Id</h2>
+<fieldset>
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Статус заявки:</label>
+        <div class="col-sm-10">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@Model.app.Status</a>
+                <div class="dropdown-menu" style="">
+                    @foreach (var obj in (DbSet<Status>)(ViewData["statuses"]))
+                    {
+                        <a class="dropdown-item" asp-action="ChangeStatus" asp-route-id="@Model.app.Id" asp-route-status="@obj.StatusName">@obj.StatusName</a>
+                    }
+                </div>
+        </div>
+        
+    </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Рецензент:</label>
+            <div class="col-sm-10">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@Model.app.Assignee</a>
+                    <div class="dropdown-menu" style="">
+                        @foreach (var obj in (List<User>)(ViewData["reviewer"]))
+                        {
+                            <a class="dropdown-item" asp-action="ChangeAssignee" asp-route-id="@Model.app.Id" asp-route-assignee="@obj.FIO">@obj.FIO</a>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+      <label for="staticEmail" class="col-sm-2 col-form-label">Автор:</label>
+      <div class="col-sm-10">
+                <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="@Model.app.Author">
+      </div>
+        <label for="staticEmail" class="col-sm-2 col-form-label">Название работы:</label>
+        <div class="col-sm-10">
+                <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="@Model.app.Name">
+        </div>
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+                <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="@Model.app.Email">
+        </div>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Проверка на заимствование:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly="" class="form-control-plaintext" id="GradeAntiplagiat" value="@Model.app.GradeAntiplagiat">
+            </div>
+    <form method ="post" enctype="multipart/form-data">
+
+
+
+        <div class="form-group">
+            <label for="formFile" class="form-label mt-4">Рецензия: @Model.app.CriticReviewFile.Substring(@Model.app.CriticReviewFile.LastIndexOf('\\') + 1)</label>
+                    <input class="form-control" asp-for="file" type="file" id="formFile">
+        </div>
+        <div class="form-group">
+                    <label for="formFile" class="form-label mt-4">Правки по оформлению: @Model.app.RedactorReviewFile.Substring(@Model.app.RedactorReviewFile.LastIndexOf('\\') + 1)</label>
+                    <input class="form-control" asp-for="file" type="file" id="formFile">
+        </div>
+        <h2> </h2>
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </form>
+    </div>
+ </fieldset>
+@if (LoginController.usersa == "Redactor")
+{
+    <h2> </h2>
+    <h2> </h2>
+    <a asp-action="ToMagazine" asp-route-id="@Model.app.Id" class="btn btn-primary">Опубликовать</a>
+}
+

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Article>
+@{
+    ViewData["Title"] = "Главная";
+}
+<h1> </h1>
+<h1>Текущий выпуск</h1>
+@foreach(var item in Model)
+{   
+    <div class="card text-white bg-primary mb-3" style="max-width: 80rem;">
+        <a class="card-body" href="~/Article/@item.Id">
+            <h4 class="card-title">@item.ArticleName</h4>
+            <p class="card-text">@item.ArticleAuthor</p>
+            <p class="card-text">Ключевые слова: @item.Keywords</p>
+            <p class="card-text">Аннотация:</p>
+            <p class="card-text">@item.Annotation</p>
+        </a>
+    </div>
+}

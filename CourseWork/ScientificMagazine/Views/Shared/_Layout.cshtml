@@ -1,0 +1,82 @@
+﻿@using ScientificMagazine.Controllers;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ScientificMagazine</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootswatchTheme.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ScientificMagazine.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">В мире студентов</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                                Главная
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="AboutUs" asp-action="Index">О журнале</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Archive" asp-action="Index">Архив</a>
+                        </li>
+                        @if (LoginController.usersa == "User")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Application" asp-action="ApplicationCreate">Отправить статью</a>
+                        </li>
+                        }
+                        @if (LoginController.usersa == "Reviewer" || LoginController.usersa == "Redactor")
+                        {    
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Application" asp-action="Index">Заявки</a>
+                        </li>
+                        }
+                    </ul>
+                    <form class="d-flex">
+                            
+                            @if(LoginController.usersa == "")
+                            {
+                                    <button class="btn btn-secondary my-2 my-sm-0" asp-controller="login" type="submit">Войти</button>
+                            <button class="btn btn-secondary my-2 my-sm-0" asp-controller="registration" type="submit">Зарегистрироваться</button>
+                            }else
+                            {
+                            <button class="btn btn-secondary my-2 my-sm-0" asp-controller="logout" type="submit">Выйти</button>
+                            }
+                            
+                            
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-dark">
+        <div class="container">
+            &copy; 2022 - Научный журнал "В мире студентов"
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

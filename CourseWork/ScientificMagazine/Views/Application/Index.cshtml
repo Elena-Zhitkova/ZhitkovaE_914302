@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Application>
+@{
+    ViewData["Title"] = "Заявки";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Список заявок</h2>
+		</div>
+	</div>
+    <br /><br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Название статьи
+            </th>
+            <th>
+                Автор статьи
+            </th>
+            <th>
+                Рецензор
+            </th>
+            <th>
+                Статус
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="20%">
+                    @obj.Id
+                </td>
+                <td width="20%">
+                    <a class="nav-link active" asp-controller="ApplicationDetails" asp-action="Index" asp-route-id=@obj.Id>
+                            @obj.Name
+                    </a>
+                </td>
+                <td width="20%">
+                    @obj.Author
+                </td>
+                <td width="20%">
+                    @obj.Assignee
+                </td>
+                <td width="20%">
+                    @obj.Status
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+

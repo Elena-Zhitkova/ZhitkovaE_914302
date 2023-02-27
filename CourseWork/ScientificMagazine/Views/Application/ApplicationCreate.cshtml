@@ -1,0 +1,44 @@
+﻿@model Upload
+@using Microsoft.EntityFrameworkCore;
+@using ScientificMagazine.Controllers;
+@{
+    ViewData["Title"] = "ApplicationCreate";
+}
+
+
+<form method="post"enctype="multipart/form-data">
+    <legend>Заполните форму</legend>
+    <div class="form-group">
+        <label class="form-label mt-4">Автор:</label>
+        <input asp-for="app.Author" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="app.Name" class="form-label mt-4">Название научной работы:</label>
+        <input asp-for="app.Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="app.KeyWords" class="form-label mt-4">Ключевые слова:</label>
+        <input asp-for="app.KeyWords" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="app.Annotation" for="exampleTextarea" class="form-label mt-4">Аннотация:</label>
+        <textarea asp-for="app.Annotation"  class="form-control" id="exampleTextarea" rows="3" spellcheck="false" data-ms-editor="true"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="app.Email" class="form-label mt-4">Email:</label>
+        <input asp-for="app.Email" type="email" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="file" class="form-label mt-4">PDF файл со статьей</label>
+        <input asp-for="file" class="form-control" type="file" id="formFile">
+    </div>
+    <legend> </legend>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+

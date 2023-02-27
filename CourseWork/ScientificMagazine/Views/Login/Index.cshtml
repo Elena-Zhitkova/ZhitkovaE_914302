@@ -1,0 +1,23 @@
+﻿@model User
+@{
+}
+<div style=" margin: auto;
+     width: 25%;
+     padding: 10px; ">
+    <form method="post">
+        <!-- Email input -->
+        <div class=" mb-4">
+            <input type="email" asp-for = "Email" id="form2Example1" name='email' class=" form-control" />
+            <label class=" form-label" for=" form2Example1">Email</label>
+        </div>
+
+        <!-- Password input -->
+        <div class=" mb-4">
+            <input type="password" asp-for="Password" name='password' id=" form2Example2" class=" form-control" />
+            <label class=" form-label" for=" form2Example2">Пароль</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class=" btn btn-primary btn-block mb-4">Войти</button>
+    </form>
+</div>
